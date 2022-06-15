@@ -13,6 +13,7 @@
 		926C24B82857D41300543E4E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 926C24B62857D41300543E4E /* Main.storyboard */; };
 		926C24BA2857D41500543E4E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 926C24B92857D41500543E4E /* Assets.xcassets */; };
 		926C24BD2857D41500543E4E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 926C24BB2857D41500543E4E /* LaunchScreen.storyboard */; };
+		92CA5B6E285A858900CBABAE /* avatar.png in Resources */ = {isa = PBXBuildFile; fileRef = 92CA5B6D285A858900CBABAE /* avatar.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		926C24B92857D41500543E4E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		926C24BC2857D41500543E4E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		926C24BE2857D41500543E4E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		92CA5B6D285A858900CBABAE /* avatar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = avatar.png; path = ../../../../../../../../var/folders/cq/_vl719917pdd2vh5nq9px8800000gn/T/TemporaryItems/NSIRD_screencaptureui_uDVVFk/avatar.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +65,7 @@
 				926C24B92857D41500543E4E /* Assets.xcassets */,
 				926C24BB2857D41500543E4E /* LaunchScreen.storyboard */,
 				926C24BE2857D41500543E4E /* Info.plist */,
+				92CA5B6D285A858900CBABAE /* avatar.png */,
 			);
 			path = 11HW;
 			sourceTree = "<group>";
@@ -125,6 +128,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				92CA5B6E285A858900CBABAE /* avatar.png in Resources */,
 				926C24BD2857D41500543E4E /* LaunchScreen.storyboard in Resources */,
 				926C24BA2857D41500543E4E /* Assets.xcassets in Resources */,
 				926C24B82857D41300543E4E /* Main.storyboard in Resources */,
