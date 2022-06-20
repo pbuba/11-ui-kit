@@ -269,6 +269,7 @@ class ViewController: UIViewController {
         button.configuration = UIButton.Configuration.plain()
         button.configuration?.imagePlacement = .leading
         button.configuration?.imagePadding = 20
+        button.configuration?.contentInsets = .init(top: 5, leading: 5, bottom: 5, trailing: 5)
     
         return button
     }
@@ -285,6 +286,7 @@ class ViewController: UIViewController {
         button.configuration = UIButton.Configuration.plain()
         button.configuration?.imagePlacement = .top
         button.configuration?.imagePadding = 10
+        button.configuration?.contentInsets = .init(top: 3, leading: 3, bottom: 3, trailing: 3)
     
         return button
     }
