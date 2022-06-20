@@ -9,6 +9,29 @@ import UIKit
 
 class ViewController: UIViewController {
     
+    private lazy var parentStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .vertical
+        stackView.spacing = 15
+        return stackView
+    }()
+    
+    // MARK: - First block
+    
+    private lazy var avatarImage: UIImageView = {
+        let image = UIImageView()
+        image.image = UIImage(named: "my")
+        image.layer.masksToBounds = true
+        
+        
+        image.heightAnchor.constraint(equalToConstant: Metric.ImageHeight).isActive = true
+        image.widthAnchor.constraint(equalToConstant: Metric.ImageHeight).isActive = true
+        
+        image.layer.cornerRadius = Metric.ImageHeight / 2
+        
+        return image
+    }()
+    
     private lazy var nameLabel: UILabel = {
         let label = UILabel()
         label.text = "Бубликов Павел"
@@ -87,6 +110,8 @@ class ViewController: UIViewController {
         return stackView
     }()
     
+    // MARK: - Second block
+    
     private lazy var controlsStackView: UIStackView = {
         let stackView = UIStackView()
         
@@ -97,126 +122,12 @@ class ViewController: UIViewController {
         return stackView
     }()
     
-    private lazy var parentStackView: UIStackView = {
-        let stackView = UIStackView()
-        stackView.axis = .vertical
-        stackView.spacing = 15
-        return stackView
-    }()
+    lazy var historyButton = createHorizontalButtons(with: "История", and: "camera")
+    lazy var noteButton = createHorizontalButtons(with: "Запись", and: "square.and.pencil")
+    lazy var photoButton = createHorizontalButtons(with: "Фото", and: "photo")
+    lazy var clipButton = createHorizontalButtons(with: "Клип", and: "play.rectangle")
     
-    private lazy var avatarImage: UIImageView = {
-        let image = UIImageView()
-        image.image = UIImage(named: "my")
-        image.layer.masksToBounds = true
-        image.heightAnchor.constraint(equalToConstant: 70).isActive = true
-        image.widthAnchor.constraint(equalToConstant: 70).isActive = true
-        
-        return image
-    }()
-    
-    private lazy var hystoryButtonWithImage: UIButton = {
-        let button = UIButton()
-        let image = UIImage(systemName: "camera")
-
-        button.setImage(image, for: .normal)
-        button.tintColor = .systemBlue
-
-        return button
-    }()
-    
-    private lazy var hystoryButtonWithTitle: UIButton = {
-        let button = UIButton()
-        
-        button.setTitle("История", for: .normal)
-        button.setTitleColor(.systemBlue, for: .normal)
-        button.titleLabel?.font =  .systemFont(ofSize: 12, weight: .regular)
-
-        return button
-    }()
-    
-    private lazy var hystoryButtonView: UIStackView = {
-        let stackView = UIStackView()
-        stackView.axis = .vertical
-        return stackView
-    }()
-    
-    private lazy var photoButtonWithImage: UIButton = {
-        let button = UIButton()
-        let image = UIImage(systemName: "photo")
-
-        button.setImage(image, for: .normal)
-        button.tintColor = .systemBlue
-
-        return button
-    }()
-    
-    private lazy var photoButtonWithTitle: UIButton = {
-        let button = UIButton()
-        
-        button.setTitle("Фото", for: .normal)
-        button.setTitleColor(.systemBlue, for: .normal)
-        button.titleLabel?.font =  .systemFont(ofSize: 12, weight: .regular)
-
-        return button
-    }()
-    
-    private lazy var photoButtonView: UIStackView = {
-        let stackView = UIStackView()
-        stackView.axis = .vertical
-        return stackView
-    }()
-    
-    private lazy var noteButtonWithImage: UIButton = {
-        let button = UIButton()
-        let image = UIImage(systemName: "square.and.pencil")
-
-        button.setImage(image, for: .normal)
-        button.tintColor = .systemBlue
-
-        return button
-    }()
-    
-    private lazy var noteButtonWithTitle: UIButton = {
-        let button = UIButton()
-        
-        button.setTitle("Запись", for: .normal)
-        button.setTitleColor(.systemBlue, for: .normal)
-        button.titleLabel?.font =  .systemFont(ofSize: 12, weight: .regular)
-
-        return button
-    }()
-    
-    private lazy var noteButtonView: UIStackView = {
-        let stackView = UIStackView()
-        stackView.axis = .vertical
-        return stackView
-    }()
-    
-    private lazy var clipButtonWithImage: UIButton = {
-        let button = UIButton()
-        let image = UIImage(systemName: "ipad.landscape.badge.play")
-
-        button.setImage(image, for: .normal)
-        button.tintColor = .systemBlue
-
-        return button
-    }()
-    
-    private lazy var clipButtonWithTitle: UIButton = {
-        let button = UIButton()
-        
-        button.setTitle("Клип", for: .normal)
-        button.setTitleColor(.systemBlue, for: .normal)
-        button.titleLabel?.font =  .systemFont(ofSize: 12, weight: .regular)
-
-        return button
-    }()
-    
-    private lazy var clipButtonView: UIStackView = {
-        let stackView = UIStackView()
-        stackView.axis = .vertical
-        return stackView
-    }()
+    // MARK: - Third block
     
     private lazy var oneLineView: UIView = {
         let view = UIView()
@@ -228,7 +139,7 @@ class ViewController: UIViewController {
     private lazy var infoStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .vertical
-        stackView.spacing = 20
+        stackView.spacing = 0
         
         return stackView
     }()
@@ -239,96 +150,37 @@ class ViewController: UIViewController {
     private lazy var fourthInnerInfoStackView: UIStackView = getInnerInfoStackView()
     private lazy var fifthInnerInfoStackView: UIStackView = getInnerInfoStackView()
     
-    private func getInnerInfoStackView() -> UIStackView {
-        let stackView = UIStackView()
-        stackView.axis = .horizontal
-        stackView.spacing = 15
-        
-        return stackView
-    }
+    private lazy var cityButton = createButtonWithLeadingImage(
+        with: "Город: Москва",
+        imageName: "house",
+        color: .darkGray
+    )
     
-    private lazy var cityLabel: UILabel = {
-        let label = UILabel()
-        label.text = "Город: Москва"
-        label.textColor = .darkGray
-        label.font = .systemFont(ofSize: 14)
-        label.textAlignment = .left
-
-        return label
-    }()
+    private lazy var subsButton = createButtonWithLeadingImage(
+        with: "35 подписчиков",
+        imageName: "dot.radiowaves.up.forward",
+        color: .darkGray
+    )
     
-    private lazy var subsLabel: UILabel = {
-        let label = UILabel()
-        label.text = "35 подписчиков"
-        label.textColor = .darkGray
-        label.font = .systemFont(ofSize: 14)
-        label.textAlignment = .left
-
-        return label
-    }()
+    private lazy var workButton = createButtonWithLeadingImage(
+        with: "Указать место работы",
+        imageName: "bag",
+        color: .systemCyan
+    )
     
-    private lazy var workButton: UIButton = {
-        let button = UIButton()
-        let image = UIImage(systemName: "camera")
-
-        button.setImage(image, for: .normal)
-        button.setTitle("Указать место работы", for: .normal)
-        button.setTitleColor(.systemBlue, for: .normal)
-        button.titleLabel?.font =  .systemFont(ofSize: 14, weight: .regular)
-        button.contentHorizontalAlignment = .left
-
-        return button
-    }()
+    private lazy var giftButton = createButtonWithLeadingImage(
+        with: "Получить подарок",
+        imageName: "snowflake",
+        color: UIColor.init(red: 123/255, green: 3/255, blue: 252/255, alpha: 1)
+    )
     
-    private lazy var giftButton: UIButton = {
-        let button = UIButton()
-        let image = UIImage(systemName: "camera")
-
-        button.setImage(image, for: .normal)
-        button.setTitle("Получить подарок", for: .normal)
-        button.setTitleColor(UIColor(red: 123, green: 3, blue: 252, alpha: 1), for: .normal)
-        button.titleLabel?.font =  .systemFont(ofSize: 14, weight: .regular)
-        button.contentHorizontalAlignment = .left
-
-        return button
-    }()
+    private lazy var moreInfoButton = createButtonWithLeadingImage(
+        with: "Подробная информация",
+        imageName: "info.circle.fill",
+        color: .white
+    )
     
-    private lazy var moreInfoButton: UIButton = {
-        var config = UIButton.Configuration.tinted()
-        config.imagePadding = 15
-        let button = UIButton(configuration: config)
-        let image = UIImage(systemName: "info.circle.fill")
-        
-        button.setImage(image, for: .normal)
-        button.setTitle("Подробная информация", for: .normal)
-        button.tintColor = .white
-        button.setTitleColor(.white, for: .normal)
-        button.titleLabel?.font =  .systemFont(ofSize: 14, weight: .regular)
-        button.contentHorizontalAlignment = .left
-
-        return button
-    }()
-    
-    private lazy var cityImage: UIImageView = {
-        let image = UIImageView()
-        image.image = UIImage(systemName: "house")
-        image.layer.masksToBounds = true
-        image.tintColor = .gray
-        image.widthAnchor.constraint(equalToConstant: 25).isActive = true
-        
-        return image
-    }()
-    
-    private lazy var subsImage: UIImageView = {
-        let image = UIImageView()
-        image.image = UIImage(systemName: "dot.radiowaves.up.forward")
-        image.layer.masksToBounds = true
-        image.tintColor = .gray
-        image.widthAnchor.constraint(equalToConstant: 25).isActive = true
-        image.heightAnchor.constraint(equalToConstant: 25).isActive = true
-        
-        return image
-    }()
+    // MARK: Setup
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -336,8 +188,6 @@ class ViewController: UIViewController {
         setupHierarchy()
         setupLayout()
         setupView()
-        
-        avatarImage.layer.cornerRadius = avatarImage.frame.width / 2
     }
     
     private func setupHierarchy(){
@@ -345,61 +195,40 @@ class ViewController: UIViewController {
         
         parentStackView.addArrangedSubview(profileStackView)
         
-            profileStackView.addArrangedSubview(avatarImage)
-            profileStackView.addArrangedSubview(labelsStackView)
+        profileStackView.addArrangedSubview(avatarImage)
+        profileStackView.addArrangedSubview(labelsStackView)
 
-                labelsStackView.addArrangedSubview(nameLabel)
-                labelsStackView.addArrangedSubview(statusButton)
-                labelsStackView.addArrangedSubview(statusStackView)
-        
-                    statusStackView.addArrangedSubview(statusLabel)
-                    statusStackView.addArrangedSubview(statusImage)
+        labelsStackView.addArrangedSubview(nameLabel)
+        labelsStackView.addArrangedSubview(statusButton)
+        labelsStackView.addArrangedSubview(statusStackView)
+
+        statusStackView.addArrangedSubview(statusLabel)
+        statusStackView.addArrangedSubview(statusImage)
         
         parentStackView.addArrangedSubview(editProfileButton)
         
         parentStackView.addArrangedSubview(controlsStackView)
         
-            controlsStackView.addArrangedSubview(hystoryButtonView)
-            controlsStackView.addArrangedSubview(noteButtonView)
-            controlsStackView.addArrangedSubview(photoButtonView)
-            controlsStackView.addArrangedSubview(clipButtonView)
-            
-                photoButtonView.addArrangedSubview(photoButtonWithImage)
-                photoButtonView.addArrangedSubview(photoButtonWithTitle)
-            
-                noteButtonView.addArrangedSubview(noteButtonWithImage)
-                noteButtonView.addArrangedSubview(noteButtonWithTitle)
-            
-                hystoryButtonView.addArrangedSubview(hystoryButtonWithImage)
-                hystoryButtonView.addArrangedSubview(hystoryButtonWithTitle)
-            
-                clipButtonView.addArrangedSubview(clipButtonWithImage)
-                clipButtonView.addArrangedSubview(clipButtonWithTitle)
+        controlsStackView.addArrangedSubview(historyButton)
+        controlsStackView.addArrangedSubview(noteButton)
+        controlsStackView.addArrangedSubview(photoButton)
+        controlsStackView.addArrangedSubview(clipButton)
         
         parentStackView.addArrangedSubview(oneLineView)
         
         parentStackView.addArrangedSubview(infoStackView)
         
-            infoStackView.addArrangedSubview(firstInnerInfoStackView)
-            infoStackView.addArrangedSubview(secondInnerInfoStackView)
-            infoStackView.addArrangedSubview(thirdInnerInfoStackView)
-            infoStackView.addArrangedSubview(fourthInnerInfoStackView)
-            infoStackView.addArrangedSubview(fifthInnerInfoStackView)
-        
-                firstInnerInfoStackView.addArrangedSubview(cityImage)
-                firstInnerInfoStackView.addArrangedSubview(cityLabel)
-        
-                secondInnerInfoStackView.addArrangedSubview(subsImage)
-                secondInnerInfoStackView.addArrangedSubview(subsLabel)
-                
-                thirdInnerInfoStackView.addArrangedSubview(workButton)
-                thirdInnerInfoStackView.addArrangedSubview(workButton)
-                
-                fourthInnerInfoStackView.addArrangedSubview(giftButton)
-                fourthInnerInfoStackView.addArrangedSubview(giftButton)
-                
-                fifthInnerInfoStackView.addArrangedSubview(moreInfoButton)
-                fifthInnerInfoStackView.addArrangedSubview(moreInfoButton)
+        infoStackView.addArrangedSubview(firstInnerInfoStackView)
+        infoStackView.addArrangedSubview(secondInnerInfoStackView)
+        infoStackView.addArrangedSubview(thirdInnerInfoStackView)
+        infoStackView.addArrangedSubview(fourthInnerInfoStackView)
+        infoStackView.addArrangedSubview(fifthInnerInfoStackView)
+    
+        firstInnerInfoStackView.addArrangedSubview(cityButton)
+        secondInnerInfoStackView.addArrangedSubview(subsButton)
+        thirdInnerInfoStackView.addArrangedSubview(workButton)
+        fourthInnerInfoStackView.addArrangedSubview(giftButton)
+        fifthInnerInfoStackView.addArrangedSubview(moreInfoButton)
     }
     
     private func setupLayout(){
@@ -415,13 +244,58 @@ class ViewController: UIViewController {
     private func setupView(){
         view.backgroundColor = .black
     }
-
+    
+    // MARK: Utils
+    
+    private func getInnerInfoStackView() -> UIStackView {
+        let stackView = UIStackView()
+        stackView.axis = .horizontal
+        stackView.spacing = 15
+        
+        return stackView
+    }
+    
+    private func createButtonWithLeadingImage(with label: String, imageName: String, color: UIColor) -> UIButton {
+        let button = UIButton(type: .system)
+        button.layer.masksToBounds = true
+        
+        button.setTitle(label, for: .normal)
+        button.tintColor = color
+        button.setImage(.init(systemName: imageName), for: .normal)
+        
+        button.titleLabel?.font = .systemFont(ofSize: 10, weight: .semibold)
+        button.contentHorizontalAlignment = .left
+        
+        button.configuration = UIButton.Configuration.plain()
+        button.configuration?.imagePlacement = .leading
+        button.configuration?.imagePadding = 20
+    
+        return button
+    }
+    
+    func createHorizontalButtons(with title: String, and icon: String ) -> UIButton {
+        let button = UIButton(type: .system)
+        button.layer.masksToBounds = true
+        
+        button.setTitle(title, for: .normal)
+        button.tintColor = .systemCyan
+        button.setImage(.init(systemName: icon), for: .normal)
+        button.titleLabel?.font = .systemFont(ofSize: 10, weight: .semibold)
+        
+        button.configuration = UIButton.Configuration.plain()
+        button.configuration?.imagePlacement = .top
+        button.configuration?.imagePadding = 10
+    
+        return button
+    }
 
 }
 
 extension ViewController {
     enum Metric {
-        static let ImageHeight: CGFloat = 75
+        
+        // Тут изменила кодстайл константы
+        static let ImageHeight: CGFloat = 100
     }
 }
 
